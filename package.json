@@ -7,10 +7,18 @@
   "author": "Lisa \"Danger\" Burton",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d lib"
+    "format": "prettier",
+    "prebuild": "eslint src/**",
+    "build": "babel src -d lib",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0"
+    "@babel/core": "^7.6.0",
+    "jest": "24.9"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0"
   }
 }
