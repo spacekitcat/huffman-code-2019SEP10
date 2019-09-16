@@ -1,0 +1,16 @@
+{
+  "name": "huffman-code-2019SEP10",
+  "version": "1.0.0",
+  "description": "Quite implementation of a Huffman coding system.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/spacekitcat/huffman-code-2019SEP10",
+  "author": "Lisa \"Danger\" Burton",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d lib"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0"
+  }
+}
