@@ -2,14 +2,14 @@
   "name": "huffman-code-2019SEP10",
   "version": "1.0.0",
   "description": "Quite implementation of a Huffman coding system.",
-  "main": "lib/index.js",
+  "main": "lib/main.js",
   "repository": "https://github.com/spacekitcat/huffman-code-2019SEP10",
   "author": "Lisa \"Danger\" Burton",
   "license": "MIT",
   "scripts": {
     "prebuild": "eslint src/**",
     "build": "babel src -d lib",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "dependencies": {},
