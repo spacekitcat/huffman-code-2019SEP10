@@ -125,4 +125,72 @@ describe('`Node`', () => {
       expect(sut.getAggregateSum()).toBe(7);
     });
   });
+
+  describe('A Node (9, Weetabix) with right child with a left child', () => {
+    const specifiedValue = 9;
+    const specifiedKey = Buffer.from('Weetabix');
+    const specifiedRightChild = new Node(2, Buffer.from('Alpen'));
+    const specifiedRightLeftChild = new Node(3, Buffer.from('RiceKrispies'));
+
+    let sut = new Node();
+    beforeAll(() => {
+      sut = new Node(specifiedValue, specifiedKey);
+      specifiedRightChild.setLeftChild(specifiedRightLeftChild);
+      sut.setRightChild(specifiedRightChild);
+    });
+
+    it('should have the expected value', () => {
+      expect(sut.getValue()).toBe(specifiedValue);
+    });
+
+    it('should have the expected key', () => {
+      expect(sut.getKey()).toMatchObject(specifiedKey);
+    });
+
+    it('should have the expected right child', () => {
+      expect(sut.getRightChild()).toMatchObject(specifiedRightChild);
+    });
+
+    it('should have a null left child', () => {
+      expect(sut.getLeftChild()).toBeNull();
+    });
+
+    it('should return the correct aggregate sum', () => {
+      expect(sut.getAggregateSum()).toBe(14);
+    });
+  });
+
+  describe('A Node (9, Weetabix) with left child with a right child', () => {
+    const specifiedValue = 1;
+    const specifiedKey = Buffer.from('Weetabix');
+    const specifiedLeftChild = new Node(16, Buffer.from('Alpen'));
+    const specifiedRightRightChild = new Node(54, Buffer.from('RiceKrispies'));
+
+    let sut = new Node();
+    beforeAll(() => {
+      sut = new Node(specifiedValue, specifiedKey);
+      specifiedLeftChild.setLeftChild(specifiedRightRightChild);
+      sut.setLeftChild(specifiedLeftChild);
+    });
+
+    it('should have the expected value', () => {
+      expect(sut.getValue()).toBe(specifiedValue);
+    });
+
+    it('should have the expected key', () => {
+      expect(sut.getKey()).toMatchObject(specifiedKey);
+    });
+
+    it('should have the expected left child', () => {
+      expect(sut.getLeftChild()).toMatchObject(specifiedLeftChild);
+    });
+
+    it('should have a null right child', () => {
+      expect(sut.getRightChild()).toBeNull();
+    });
+
+    it('should return the correct aggregate sum', () => {
+      expect(sut.getAggregateSum()).toBe(71);
+    });
+  });
 });
