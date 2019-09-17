@@ -160,7 +160,7 @@ describe('`Node`', () => {
     });
   });
 
-  describe('A Node (9, Weetabix) with left child with a right child', () => {
+  describe('A Node (1, Weetabix) with left child with a right child', () => {
     const specifiedValue = 1;
     const specifiedKey = Buffer.from('Weetabix');
     const specifiedLeftChild = new Node(16, Buffer.from('Alpen'));
