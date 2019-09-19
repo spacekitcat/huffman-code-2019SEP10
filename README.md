@@ -4,7 +4,7 @@ Small project to explore the Huffman coding scheme (just for fun).
 
 ## Progress
 
-I've implemented a Transform stream to count byte occurrences of its input. I'm probably going to use a priority queue to generate the tree. 
+I've implemented a Transform stream to count byte occurrences of its input and a heap structure for constructing the tree. The heap and transform code currently collaborate to list all of the unique bytes, ordered from highest occurrences to lowest.
 
 ## Build
 
@@ -20,71 +20,96 @@ $ yarn build
 yarn run v1.13.0
 $ eslint src/**
 $ babel src -d lib
-Successfully compiled 2 files with Babel.
-✨  Done in 4.73s.
+Successfully compiled 6 files with Babel.
+✨  Done in 0.93s.
 ```
 
 ## Test
 
 ```bash
-$ yarn test
 yarn run v1.13.0
 $ jest --coverage
+ PASS  __tests__/deleteHighestPrirotyChild.test.js
+ PASS  __tests__/Node.test.js
+ PASS  __tests__/findHighestPriorityChild.test.js
+ PASS  __tests__/appendNodeToHeap.test.js
  PASS  __tests__/ByteOccurrenceCountStream.test.js
-  `ByteOccurrenceCountStream` module
-    ✓ Empty input (6ms)
-    ✓ `a` input (2ms)
-    ✓ `z` input
-    ✓ `bb` input
-    ✓ `abbccc` input (1ms)
+-------------------------------|----------|----------|----------|----------|-------------------|
+File                           |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+-------------------------------|----------|----------|----------|----------|-------------------|
+All files                      |      100 |      100 |      100 |      100 |                   |
+ ByteOccurrenceCountStream.js  |      100 |      100 |      100 |      100 |                   |
+ Node.js                       |      100 |      100 |      100 |      100 |                   |
+ appendNodeToHeap.js           |      100 |      100 |      100 |      100 |                   |
+ deleteHighestPriorityChild.js |      100 |      100 |      100 |      100 |                   |
+ findHighestPriorityChild.js   |      100 |      100 |      100 |      100 |                   |
+-------------------------------|----------|----------|----------|----------|-------------------|
 
-------------------------------|----------|----------|----------|----------|-------------------|
-File                          |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
-------------------------------|----------|----------|----------|----------|-------------------|
-All files                     |      100 |      100 |      100 |      100 |                   |
- ByteOccurrenceCountStream.js |      100 |      100 |      100 |      100 |                   |
-------------------------------|----------|----------|----------|----------|-------------------|
-Test Suites: 1 passed, 1 total
-Tests:       5 passed, 5 total
+Test Suites: 5 passed, 5 total
+Tests:       63 passed, 63 total
 Snapshots:   0 total
-Time:        4.228s
+Time:        1.954s
 Ran all test suites.
-✨  Done in 7.61s.
-
+✨  Done in 3.52s.
 ```
 
 ## Run
 
 ```bash
+$ node . resources/a.txt
+L
+O
+
+
+D
+E
+H
+R
+W
+```
+
+```bash
 $ node . resources/b.txt
-{ '10': 1,
-  '32': 8,
-  '46': 1,
-  '84': 1,
-  '97': 1,
-  '98': 1,
-  '99': 1,
-  '100': 1,
-  '101': 3,
-  '102': 1,
-  '103': 1,
-  '104': 2,
-  '105': 1,
-  '106': 1,
-  '107': 1,
-  '108': 1,
-  '109': 1,
-  '110': 1,
-  '111': 4,
-  '112': 1,
-  '113': 1,
-  '114': 2,
-  '115': 1,
-  '116': 1,
-  '117': 2,
-  '118': 1,
-  '119': 1,
-  '120': 1,
-  '121': 1,
-  '122': 1 }
+
+o
+e
+h
+r
+u
+
+
+.
+T
+a
+b
+c
+d
+f
+g
+i
+j
+k
+l
+m
+n
+p
+q
+s
+t
+v
+w
+x
+y
+z
+```
+
+```bash
+$ node . resources/c.txt
+z
+*
+$
+@
+
+
+G
 ```
