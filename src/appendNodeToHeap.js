@@ -1,4 +1,4 @@
-export default function appendNodeToHeap (rootNode, childNode) {
+export default function appendNodeToHeap(rootNode, childNode) {
   if (childNode.getValue() > rootNode.getValue()) {
     if (rootNode.getRightChild() !== null) {
       appendNodeToHeap(rootNode.getRightChild(), childNode);
@@ -6,6 +6,10 @@ export default function appendNodeToHeap (rootNode, childNode) {
       rootNode.setRightChild(childNode);
     }
   } else {
-    rootNode.setLeftChild(childNode);
+    if (rootNode.getLeftChild() !== null) {
+      appendNodeToHeap(rootNode.getLeftChild(), childNode);
+    } else {
+      rootNode.setLeftChild(childNode);
+    }
   }
 }
