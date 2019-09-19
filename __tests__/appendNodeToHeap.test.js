@@ -33,4 +33,57 @@ describe('HeapAppend', () => {
       });
     });
   });
+
+  describe('Adding a single child to a root with an existing higher priority child', () => {
+    describe('Adding a higher priority child', () => {
+      let rootNode;
+      let childNode;
+      let childChildNode;
+      beforeAll(() => {
+        rootNode = new Node(9, Buffer.from('y'));
+        childNode = new Node(10, Buffer.from('i'));
+        childChildNode = new Node(11, Buffer.from('x'));
+
+        appendNodeToHeap(rootNode, childNode);
+        appendNodeToHeap(rootNode, childChildNode);
+      });
+
+      it('has the expected right child', () => {
+        expect(rootNode.getRightChild()).toMatchObject(childNode);
+      });
+
+      it('has the expected right /right/ child', () => {
+        expect(rootNode.getRightChild().getRightChild()).toMatchObject(
+          childChildNode
+        );
+      });
+    });
+
+    describe('Adding a lower priority child', () => {
+      let rootNode;
+      let childNode;
+      let childChildNode;
+      beforeAll(() => {
+        rootNode = new Node(9, Buffer.from('c'));
+        childNode = new Node(12, Buffer.from('b'));
+        childChildNode = new Node(10, Buffer.from('r'));
+
+        appendNodeToHeap(rootNode, childNode);
+        appendNodeToHeap(rootNode, childChildNode);
+      });
+
+      it('has the expected right child', () => {
+        expect(rootNode.getRightChild()).toMatchObject(childNode);
+      });
+
+      it('has the expected right /left/ child', () => {
+        expect(rootNode.getRightChild().getLeftChild()).toMatchObject(
+          childChildNode
+        );
+      });
+    });
+  });
+
+  describe('Adding a single child to a root with an existing lower priority child', () => {
+  });
 });
