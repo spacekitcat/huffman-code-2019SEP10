@@ -19,9 +19,5 @@ export default function deleteHighestPriorityChild(rootNode) {
     return rootNode;
   }
 
-  if (rootNode.getLeftChild()) {
-    return rootNode.getLeftChild();
-  }
-
-  return rootNode;
+  return rootNode.getLeftChild()
 }
