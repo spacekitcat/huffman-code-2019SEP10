@@ -11,28 +11,28 @@ const SayHello = () => {
   const fileReadStream = fs.createReadStream(fileName);
   const occurrenceCountStream = new ByteOccurrenceCountStream();
 
+  let root = null;
   fileReadStream.on('end', () => {
-    console.log(occurrenceCountStream.getOccurrences());
+    Object.keys(occurrenceCountStream.getOccurrences()).forEach(key => {
+      const leaf = new Node(
+        occurrenceCountStream.getOccurrences()[key],
+        Buffer.from([key])
+      );
+      if (root === null) {
+        root = leaf;
+      } else {
+        appendNodeToHeap(root, leaf);
+      }
+    });
+
+    while (root !== null) {
+      const highestPriorityChild = findHighestPriorityChild(root);
+      root = deleteHighestPriorityChild(root);
+      console.log(highestPriorityChild.getKey().toString('UTF-8'));
+    }
   });
 
   fileReadStream.pipe(occurrenceCountStream);
-
-  let root = new Node(5, 'x');
-
-  appendNodeToHeap(root, new Node(8, 'h'));
-  appendNodeToHeap(root, new Node(16, 'e'));
-
-  console.log();
-  console.log('root', root);
-  console.log('high', findHighestPriorityChild(root));
-  root = deleteHighestPriorityChild(root);
-  console.log();
-  console.log('root', root);
-  console.log('high', findHighestPriorityChild(root));
-  root = deleteHighestPriorityChild(root);
-  console.log();
-  console.log('root', root);
-  console.log('high', findHighestPriorityChild(root));
 };
 
 SayHello();
