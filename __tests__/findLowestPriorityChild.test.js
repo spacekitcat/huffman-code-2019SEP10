@@ -1,28 +1,28 @@
-import findHighestPriorityChild from '../src/findHighestPriorityChild';
+import findLowestPriorityChild from '../src/findLowestPriorityChild';
 import Node from '../src/Node';
 import appendNodeToHeap from '../src/appendNodeToHeap';
 
-describe('findHighestPriorityChild', () => {
-  describe('Find highest priority from null', () => {
+describe('findLowestPriorityChild', () => {
+  describe('Find lowest priority from null', () => {
     it('returns null', () => {
-      expect(findHighestPriorityChild(null)).toBeNull();
+      expect(findLowestPriorityChild(null)).toBeNull();
     });
   });
 
-  describe('Find highest priority from single leaf tree', () => {
+  describe('Find lowest priority from single leaf tree', () => {
     let rootNode;
     let popValue;
     beforeAll(() => {
       rootNode = new Node(2, 'h');
-      popValue = findHighestPriorityChild(rootNode);
+      popValue = findLowestPriorityChild(rootNode);
     });
 
-    it('returns the pop values', () => {
+    it('returns the pop value', () => {
       expect(popValue).toMatchObject(rootNode);
     });
   });
 
-  describe('Find highest priority from a tree with a higher priority child', () => {
+  describe('Find lowest priority from a tree with a higher priority child', () => {
     let rootNode;
     let childNode;
     let popValue;
@@ -30,23 +30,7 @@ describe('findHighestPriorityChild', () => {
       rootNode = new Node(2, 'h');
       childNode = new Node(3, 'g');
       appendNodeToHeap(rootNode, childNode);
-      popValue = findHighestPriorityChild(rootNode);
-    });
-
-    it('returns the pop values', () => {
-      expect(popValue).toMatchObject(childNode);
-    });
-  });
-
-  describe('Find highest priority from a tree with a lower priority child', () => {
-    let rootNode;
-    let childNode;
-    let popValue;
-    beforeAll(() => {
-      rootNode = new Node(5, 'x');
-      childNode = new Node(1, 'x');
-      appendNodeToHeap(rootNode, childNode);
-      popValue = findHighestPriorityChild(rootNode);
+      popValue = findLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
@@ -54,7 +38,23 @@ describe('findHighestPriorityChild', () => {
     });
   });
 
-  describe('Find highest priority from a tree with a higher priority child and a lower priority child', () => {
+  describe('Find lowest priority from a tree with a lower priority child', () => {
+    let rootNode;
+    let childNode;
+    let popValue;
+    beforeAll(() => {
+      rootNode = new Node(5, 'x');
+      childNode = new Node(1, 'x');
+      appendNodeToHeap(rootNode, childNode);
+      popValue = findLowestPriorityChild(rootNode);
+    });
+
+    it('returns the pop values', () => {
+      expect(popValue).toMatchObject(childNode);
+    });
+  });
+
+  describe('Find lowest priority from a tree with a higher priority child and a lower priority child', () => {
     let rootNode;
     let childNodeHigher;
     let childNodeLower;
@@ -65,15 +65,15 @@ describe('findHighestPriorityChild', () => {
       appendNodeToHeap(rootNode, childNodeHigher);
       childNodeLower = new Node(1, 'q');
       appendNodeToHeap(rootNode, childNodeLower);
-      popValue = findHighestPriorityChild(rootNode);
+      popValue = findLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(popValue).toMatchObject(childNodeHigher);
+      expect(popValue).toMatchObject(childNodeLower);
     });
   });
 
-  describe('Find highest priority from a tree with a lower priority child with a lower priority child', () => {
+  describe('Find lowest priority from a tree with a lower priority child with a lower priority child', () => {
     let rootNode;
     let childNode;
     let childChildNode;
@@ -84,15 +84,15 @@ describe('findHighestPriorityChild', () => {
       childChildNode = new Node(4, 'w');
       appendNodeToHeap(rootNode, childNode);
       appendNodeToHeap(rootNode, childChildNode);
-      popValue = findHighestPriorityChild(rootNode);
+      popValue = findLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(popValue).toMatchObject(rootNode);
+      expect(popValue).toMatchObject(childChildNode);
     });
   });
 
-  describe('Find highest priority from a tree with a lower priority child with a higher priority child', () => {
+  describe('Find lowest priority from a tree with a lower priority child with a higher priority child', () => {
     let rootNode;
     let childNode;
     let childChildNode;
@@ -103,15 +103,15 @@ describe('findHighestPriorityChild', () => {
       childChildNode = new Node(6, 'w');
       appendNodeToHeap(rootNode, childNode);
       appendNodeToHeap(rootNode, childChildNode);
-      popValue = findHighestPriorityChild(rootNode);
+      popValue = findLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(popValue).toMatchObject(rootNode);
+      expect(popValue).toMatchObject(childNode);
     });
   });
 
-  describe('Find highest priority from a tree with a higher priority child with a lower priority child', () => {
+  describe('Find lowest priority from a tree with a higher priority child with a lower priority child', () => {
     let rootNode;
     let childNode;
     let childChildNode;
@@ -122,15 +122,15 @@ describe('findHighestPriorityChild', () => {
       childChildNode = new Node(4, 'v');
       appendNodeToHeap(rootNode, childNode);
       appendNodeToHeap(rootNode, childChildNode);
-      popValue = findHighestPriorityChild(rootNode);
+      popValue = findLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(popValue).toMatchObject(childNode);
+      expect(popValue).toMatchObject(rootNode);
     });
   });
 
-  describe('Find highest priority from a tree with a higher priority child with a higher priority child', () => {
+  describe('Find lowest priority from a tree with a higher priority child with a higher priority child', () => {
     let rootNode;
     let childNode;
     let childChildNode;
@@ -141,12 +141,12 @@ describe('findHighestPriorityChild', () => {
       childChildNode = new Node(9, 'o');
       appendNodeToHeap(rootNode, childNode);
       appendNodeToHeap(rootNode, childChildNode);
-      popValue = findHighestPriorityChild(rootNode);
+      popValue = findLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
       rootNode.setRightChild(null);
-      expect(popValue).toMatchObject(childChildNode);
+      expect(popValue).toMatchObject(rootNode);
     });
   });
 });
