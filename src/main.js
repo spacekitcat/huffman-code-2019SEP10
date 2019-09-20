@@ -3,8 +3,8 @@ import process from 'process';
 import ByteOccurrenceCountStream from './ByteOccurrenceCountStream';
 import Node from './Node';
 import appendNodeToHeap from './appendNodeToHeap';
-import findHighestPriorityChild from './findHighestPriorityChild';
-import deleteHighestPriorityChild from './deleteHighestPriorityChild';
+import findLowestPriorityChild from './findLowestPriorityChild';
+import deleteLowestPriorityChild from './deleteLowestPriorityChild';
 
 const SayHello = () => {
   const fileName = process.argv[2];
@@ -26,8 +26,8 @@ const SayHello = () => {
     });
 
     while (root !== null) {
-      const highestPriorityChild = findHighestPriorityChild(root);
-      root = deleteHighestPriorityChild(root);
+      const highestPriorityChild = findLowestPriorityChild(root);
+      root = deleteLowestPriorityChild(root);
       console.log(highestPriorityChild.getKey().toString('UTF-8'));
     }
   });
