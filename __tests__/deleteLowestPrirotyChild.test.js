@@ -1,11 +1,11 @@
-import deleteHighestPriorityChild from '../src/deleteHighestPriorityChild';
+import deleteLowestPriorityChild from '../src/deleteLowestPriorityChild';
 import Node from '../src/Node';
 import appendNodeToHeap from '../src/appendNodeToHeap';
 
-describe('deleteHighestPriorityChild', () => {
+describe('deleteLowestPriorityChild', () => {
   describe('Delete from null', () => {
     it('returns null', () => {
-      expect(deleteHighestPriorityChild(null)).toBeNull();
+      expect(deleteLowestPriorityChild(null)).toBeNull();
     });
   });
 
@@ -14,7 +14,7 @@ describe('deleteHighestPriorityChild', () => {
     let newRootNode;
     beforeAll(() => {
       rootNode = new Node(2, 'h');
-      newRootNode = deleteHighestPriorityChild(rootNode);
+      newRootNode = deleteLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
@@ -30,12 +30,12 @@ describe('deleteHighestPriorityChild', () => {
       rootNode = new Node(2, 'h');
       childNode = new Node(3, 'g');
       appendNodeToHeap(rootNode, childNode);
-      newRootNode = deleteHighestPriorityChild(rootNode);
+      newRootNode = deleteLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(newRootNode).toMatchObject(rootNode);
-      expect(newRootNode.getRightChild()).toBeNull();
+      expect(newRootNode).toMatchObject(childNode);
+      expect(newRootNode.getLeftChild()).toBeNull();
     });
   });
 
@@ -47,11 +47,11 @@ describe('deleteHighestPriorityChild', () => {
       rootNode = new Node(5, 'x');
       childNode = new Node(1, 'x');
       appendNodeToHeap(rootNode, childNode);
-      newRootNode = deleteHighestPriorityChild(rootNode);
+      newRootNode = deleteLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(newRootNode).toMatchObject(childNode);
+      expect(newRootNode).toMatchObject(rootNode);
     });
   });
 
@@ -66,13 +66,13 @@ describe('deleteHighestPriorityChild', () => {
       appendNodeToHeap(rootNode, childNodeHigher);
       childNodeLower = new Node(1, 'q');
       appendNodeToHeap(rootNode, childNodeLower);
-      newRootNode = deleteHighestPriorityChild(rootNode);
+      newRootNode = deleteLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
       expect(newRootNode).toMatchObject(rootNode);
-      expect(newRootNode.getRightChild()).toBeNull();
-      expect(newRootNode.getLeftChild()).toMatchObject(childNodeLower);
+      expect(newRootNode.getRightChild()).toMatchObject(childNodeHigher);
+      expect(newRootNode.getLeftChild()).toBeNull();
     });
   });
 
@@ -87,12 +87,13 @@ describe('deleteHighestPriorityChild', () => {
       childChildNode = new Node(4, 'w');
       appendNodeToHeap(rootNode, childNode);
       appendNodeToHeap(rootNode, childChildNode);
-      newRootNode = deleteHighestPriorityChild(rootNode);
+      newRootNode = deleteLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(newRootNode).toMatchObject(childNode);
-      expect(newRootNode.getLeftChild()).toMatchObject(childChildNode);
+      expect(newRootNode).toMatchObject(rootNode);
+      expect(newRootNode.getLeftChild()).toMatchObject(childNode);
+      expect(newRootNode.getLeftChild().getLeftChild()).toBeNull();
       expect(newRootNode.getRightChild()).toBeNull();
     });
   });
@@ -108,13 +109,13 @@ describe('deleteHighestPriorityChild', () => {
       childChildNode = new Node(6, 'w');
       appendNodeToHeap(rootNode, childNode);
       appendNodeToHeap(rootNode, childChildNode);
-      newRootNode = deleteHighestPriorityChild(rootNode);
+      newRootNode = deleteLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(newRootNode).toMatchObject(childNode);
-      expect(newRootNode.getLeftChild()).toBeNull();
-      expect(newRootNode.getRightChild()).toMatchObject(childChildNode);
+      expect(newRootNode).toMatchObject(rootNode);
+      expect(newRootNode.getLeftChild()).toMatchObject(childChildNode);
+      expect(newRootNode.getRightChild()).toBeNull();
     });
   });
 
@@ -129,13 +130,13 @@ describe('deleteHighestPriorityChild', () => {
       childChildNode = new Node(4, 'v');
       appendNodeToHeap(rootNode, childNode);
       appendNodeToHeap(rootNode, childChildNode);
-      newRootNode = deleteHighestPriorityChild(rootNode);
+      newRootNode = deleteLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(newRootNode).toMatchObject(rootNode);
-      expect(newRootNode.getLeftChild()).toBeNull();
-      expect(newRootNode.getRightChild()).toMatchObject(childChildNode);
+      expect(newRootNode).toMatchObject(childNode);
+      expect(newRootNode.getLeftChild()).toMatchObject(childChildNode);
+      expect(newRootNode.getRightChild()).toBeNull();
     });
   });
 
@@ -150,13 +151,13 @@ describe('deleteHighestPriorityChild', () => {
       childChildNode = new Node(9, 'o');
       appendNodeToHeap(rootNode, childNode);
       appendNodeToHeap(rootNode, childChildNode);
-      newRootNode = deleteHighestPriorityChild(rootNode);
+      newRootNode = deleteLowestPriorityChild(rootNode);
     });
 
     it('returns the pop values', () => {
-      expect(newRootNode).toMatchObject(rootNode);
+      expect(newRootNode).toMatchObject(childNode);
       expect(newRootNode.getLeftChild()).toBeNull();
-      expect(newRootNode.getRightChild()).toMatchObject(childNode);
+      expect(newRootNode.getRightChild()).toMatchObject(childChildNode);
       expect(newRootNode.getRightChild().getRightChild()).toBeNull();
       expect(newRootNode.getRightChild().getLeftChild()).toBeNull();
     });
