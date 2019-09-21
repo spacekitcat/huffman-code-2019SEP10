@@ -83,6 +83,6 @@ $ node . resources/c.txt
 File contents: `A_DEAD_DAD_CEDED_A_BAD_BABE_A_BEADED_ABACA_BED` (outputs are UTF-8 codes in hex).
 
 ```bash
-$ node . resources/c.txt
+$ node . resources/d.txt
 5f4441450a4342
 ```

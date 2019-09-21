@@ -8,8 +8,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "eslint src/**",
-    "babel": "babel src -d lib",
-    "build": "yarn babel",
+    "build": "babel src -d lib",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },

@@ -17,6 +17,9 @@ const mergeNextLowPriorityNodes = root => {
       `${highestPriorityChild.getKey()}${secondHighestPriorityChild.getKey()}`
     )
   );
+
+  mergedNode.setInternalLeftChild(highestPriorityChild);
+  mergedNode.setInternalRightChild(secondHighestPriorityChild);
   return appendNodeToHeap(root, mergedNode);
 };
 
