@@ -2,6 +2,38 @@ import appendNodeToHeap from '../src/appendNodeToHeap';
 import Node from '../src/Node';
 
 describe('HeapAppend', () => {
+  describe('Adding a single child to a null root', () => {
+    describe('Adding a higher priority child', () => {
+      let rootNode;
+      let childNode;
+      beforeAll(() => {
+        rootNode = null;
+        childNode = new Node(8, Buffer.from('a'));
+
+        rootNode = appendNodeToHeap(rootNode, childNode);
+      });
+
+      it('has the expected root node', () => {
+        expect(rootNode).toMatchObject(childNode);
+      });
+    });
+
+    describe('Adding a lower priority child', () => {
+      let rootNode;
+      let childNode;
+      beforeAll(() => {
+        rootNode = null;
+        childNode = new Node(4, Buffer.from('a'));
+
+        rootNode = appendNodeToHeap(rootNode, childNode);
+      });
+
+      it('has the expected root node', () => {
+        expect(rootNode).toMatchObject(childNode);
+      });
+    });
+  });
+
   describe('Adding a single child to a single root', () => {
     describe('Adding a higher priority child', () => {
       let rootNode;
@@ -10,7 +42,7 @@ describe('HeapAppend', () => {
         rootNode = new Node(2, Buffer.from('y'));
         childNode = new Node(8, Buffer.from('a'));
 
-        appendNodeToHeap(rootNode, childNode);
+        rootNode = appendNodeToHeap(rootNode, childNode);
       });
 
       it('has the expected right child', () => {
@@ -25,7 +57,7 @@ describe('HeapAppend', () => {
         rootNode = new Node(5, Buffer.from('y'));
         childNode = new Node(4, Buffer.from('a'));
 
-        appendNodeToHeap(rootNode, childNode);
+        rootNode = appendNodeToHeap(rootNode, childNode);
       });
 
       it('has the expected left child', () => {
@@ -44,8 +76,8 @@ describe('HeapAppend', () => {
         childNode = new Node(10, Buffer.from('i'));
         childChildNode = new Node(11, Buffer.from('x'));
 
-        appendNodeToHeap(rootNode, childNode);
-        appendNodeToHeap(rootNode, childChildNode);
+        rootNode = appendNodeToHeap(rootNode, childNode);
+        rootNode = appendNodeToHeap(rootNode, childChildNode);
       });
 
       it('has the expected right child', () => {
@@ -68,8 +100,8 @@ describe('HeapAppend', () => {
         childNode = new Node(12, Buffer.from('b'));
         childChildNode = new Node(10, Buffer.from('r'));
 
-        appendNodeToHeap(rootNode, childNode);
-        appendNodeToHeap(rootNode, childChildNode);
+        rootNode = appendNodeToHeap(rootNode, childNode);
+        rootNode = appendNodeToHeap(rootNode, childChildNode);
       });
 
       it('has the expected right child', () => {
@@ -94,8 +126,8 @@ describe('HeapAppend', () => {
         childNode = new Node(9, Buffer.from('b'));
         childChildNode = new Node(10, Buffer.from('p'));
 
-        appendNodeToHeap(rootNode, childNode);
-        appendNodeToHeap(rootNode, childChildNode);
+        rootNode = appendNodeToHeap(rootNode, childNode);
+        rootNode = appendNodeToHeap(rootNode, childChildNode);
       });
 
       it('has the expected right child', () => {
@@ -118,8 +150,8 @@ describe('HeapAppend', () => {
         childNode = new Node(10, Buffer.from('b'));
         childChildNode = new Node(9, Buffer.from('p'));
 
-        appendNodeToHeap(rootNode, childNode);
-        appendNodeToHeap(rootNode, childChildNode);
+        rootNode = appendNodeToHeap(rootNode, childNode);
+        rootNode = appendNodeToHeap(rootNode, childChildNode);
       });
 
       it('has the expected right child', () => {
