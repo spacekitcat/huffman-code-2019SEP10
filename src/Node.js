@@ -4,6 +4,7 @@ class Node {
     this.key = key;
     this.leftChild = null;
     this.rightChild = null;
+    this.internalNode = false;
   }
 
   getValue() {
@@ -28,6 +29,14 @@ class Node {
 
   getRightChild() {
     return this.rightChild;
+  }
+
+  setInternal(internalNode) {
+    this.internalNode = internalNode;
+  }
+
+  isInternal() {
+    return this.internalNode;
   }
 
   getAggregateSum() {

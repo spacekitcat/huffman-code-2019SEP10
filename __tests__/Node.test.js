@@ -30,6 +30,10 @@ describe('`Node`', () => {
     it('should return the correct aggregate sum', () => {
       expect(sut.getAggregateSum()).toBe(8);
     });
+
+    it('should have the expected value', () => {
+      expect(sut.isInternal()).toBe(false);
+    });
   });
 
   describe('A Node with a value of `0` and a key of `vic-reeves`', () => {
@@ -59,6 +63,10 @@ describe('`Node`', () => {
 
     it('should return the correct aggregate sum', () => {
       expect(sut.getAggregateSum()).toBe(0);
+    });
+
+    it('should have the expected value', () => {
+      expect(sut.isInternal()).toBe(false);
     });
   });
 
@@ -92,6 +100,10 @@ describe('`Node`', () => {
     it('should return the correct aggregate sum', () => {
       expect(sut.getAggregateSum()).toBe(3);
     });
+
+    it('should have the expected value', () => {
+      expect(sut.isInternal()).toBe(false);
+    });
   });
 
   describe('A Node (5, Weetabix) with one right child', () => {
@@ -123,6 +135,10 @@ describe('`Node`', () => {
 
     it('should return the correct aggregate sum', () => {
       expect(sut.getAggregateSum()).toBe(7);
+    });
+
+    it('should have the expected value', () => {
+      expect(sut.isInternal()).toBe(false);
     });
   });
 
@@ -158,6 +174,10 @@ describe('`Node`', () => {
     it('should return the correct aggregate sum', () => {
       expect(sut.getAggregateSum()).toBe(14);
     });
+
+    it('should have the expected value', () => {
+      expect(sut.isInternal()).toBe(false);
+    });
   });
 
   describe('A Node (1, Weetabix) with left child with a right child', () => {
@@ -191,6 +211,25 @@ describe('`Node`', () => {
 
     it('should return the correct aggregate sum', () => {
       expect(sut.getAggregateSum()).toBe(71);
+    });
+
+    it('should have the expected value', () => {
+      expect(sut.isInternal()).toBe(false);
+    });
+  });
+
+  describe('Internal node', () => {
+    const specifiedValue = 1;
+    const specifiedKey = Buffer.from('Weetabix');
+
+    let sut = new Node();
+    beforeAll(() => {
+      sut = new Node(specifiedValue, specifiedKey);
+      sut.setInternal(true);
+    });
+
+    it('should have the expected value', () => {
+      expect(sut.isInternal()).toBe(true);
     });
   });
 });

@@ -27,7 +27,8 @@ const SayHello = () => {
 
   let root = null;
   fileReadStream.on('end', () => {
-    const singleLeafCount = Object.keys(occurrenceCountStream.getOccurrences()).length;
+    const singleLeafCount = Object.keys(occurrenceCountStream.getOccurrences())
+      .length;
     Object.keys(occurrenceCountStream.getOccurrences()).forEach(key => {
       const leaf = new Node(
         occurrenceCountStream.getOccurrences()[key],
