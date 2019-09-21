@@ -27,6 +27,7 @@ const SayHello = () => {
 
   let root = null;
   fileReadStream.on('end', () => {
+    const singleLeafCount = Object.keys(occurrenceCountStream.getOccurrences()).length;
     Object.keys(occurrenceCountStream.getOccurrences()).forEach(key => {
       const leaf = new Node(
         occurrenceCountStream.getOccurrences()[key],
@@ -39,13 +40,9 @@ const SayHello = () => {
       }
     });
 
-    root = mergeNextLowPriorityNodes(root);
-    root = mergeNextLowPriorityNodes(root);
-    root = mergeNextLowPriorityNodes(root);
-    root = mergeNextLowPriorityNodes(root);
-    root = mergeNextLowPriorityNodes(root);
-    root = mergeNextLowPriorityNodes(root);
-    root = mergeNextLowPriorityNodes(root);
+    while (root.getKey().length < singleLeafCount) {
+      root = mergeNextLowPriorityNodes(root);
+    }
 
     while (root !== null) {
       const child = findLowestPriorityChild(root);
