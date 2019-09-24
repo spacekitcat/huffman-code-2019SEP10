@@ -48,7 +48,7 @@ All files                     |      100 |      100 |      100 |      100 |     
 
 ## Run
 
-File contents: `HELLOWORLD` (outputs are UTF-8 codes in hex).
+File contents: `HELLOWORLD` (outputs are UTF-8 representation).
 
 ```bash
 $ node . resources/a.txt
@@ -61,7 +61,7 @@ $ node . resources/a.txt
 11      L
 ```
 
-File contents: `The quick brown fox jumps over the lazy dog.` (outputs are UTF-8 codes in hex).
+File contents: `The quick brown fox jumps over the lazy dog.` (outputs are UTF-8 representation).
 
 ```bash
 $ node . resources/b.txt
@@ -96,7 +96,7 @@ $ node . resources/b.txt
 111      
 ```
 
-File contents: `$$$$$zzzzzzzzzzzzzzzzzzzzzzz*********G@@@` (outputs are UTF-8 codes in hex).
+File contents: `$$$$$zzzzzzzzzzzzzzzzzzzzzzz*********G@@@` (outputs are UTF-8 representation).
 
 ```bash
 $ node . resources/c.txt
@@ -107,7 +107,7 @@ $ node . resources/c.txt
 1       z
 ```
 
-File contents: `A_DEAD_DAD_CEDED_A_BAD_BABE_A_BEADED_ABACA_BED` (outputs are UTF-8 codes in hex). This example is from Wikipedia article on Huffman coding and it matches.
+File contents: `A_DEAD_DAD_CEDED_A_BAD_BABE_A_BEADED_ABACA_BED` (outputs are UTF-8 representation). This example is from Wikipedia article on Huffman coding and it matches.
 
 ```bash
 $ node . resources/d.txt
