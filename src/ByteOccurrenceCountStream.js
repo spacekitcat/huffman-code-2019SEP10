@@ -10,6 +10,9 @@ class ByteOccurrenceCountStream extends Transform {
   _transform(chunk, encoding, callback) {
     for (const b of chunk) {
 
+      if (b === 10) {
+        continue;
+      }
       let currentOccurrence = this.occurrences[b];
       if (currentOccurrence === undefined) {
         currentOccurrence = 1;
