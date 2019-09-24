@@ -107,7 +107,7 @@ $ node . resources/c.txt
 1       z
 ```
 
-File contents: `A_DEAD_DAD_CEDED_A_BAD_BABE_A_BEADED_ABACA_BED` (outputs are UTF-8 codes in hex).
+File contents: `A_DEAD_DAD_CEDED_A_BAD_BABE_A_BEADED_ABACA_BED` (outputs are UTF-8 codes in hex). This example is from Wikipedia article on Huffman coding and it matches.
 
 ```bash
 $ node . resources/d.txt
