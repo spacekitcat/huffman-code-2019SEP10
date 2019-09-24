@@ -56,16 +56,8 @@ const printTree = (node, prefix = '') => {
     printTree(node.getRightChild(), prefix + '1');
   }
 
-  // if (node.getInternalLeftChild()) {
-  //   printTree(node.getInternalLeftChild());
-  // }
-
-  // if (node.getInternalRightChild()) {
-  //   printTree(node.getInternalRightChild());
-  // }
-
   if (!node.getLeftChild() && !node.getRightChild()) {
-    console.log(`${prefix}  ${node.getKey()}`);
+    console.log(`${prefix}\t${node.getKey()}`);
   }
 };
 
@@ -89,30 +81,27 @@ const SayHello = () => {
   const occurrenceCountStream = new ByteOccurrenceCountStream();
 
   let root = null;
+  let singleLeafCount = 0;
   fileReadStream.on('end', () => {
     Object.keys(occurrenceCountStream.getOccurrences()).forEach(key => {
-      const leaf = new Node(
-        occurrenceCountStream.getOccurrences()[key],
-        Buffer.from([key])
-      );
-      if (root === null) {
-        root = leaf;
-      } else {
-        appendNodeToHeap(root, leaf);
+      if (key !== '10') {
+        const leaf = new Node(
+          occurrenceCountStream.getOccurrences()[key],
+          Buffer.from([key])
+        );
+        if (root === null) {
+          root = leaf;
+        } else {
+          appendNodeToHeap(root, leaf);
+        }
+        ++singleLeafCount;
       }
     });
 
-    const singleLeafCount = Object.keys(occurrenceCountStream.getOccurrences())
-      .length;
     root = reduceTree(root, singleLeafCount);
 
     reconnectChildNodes(root);
     printTree(root);
-    // while (root !== null) {
-    //   const child = findLowestPriorityChild(root);
-    //   root = deleteLowestPriorityChild(root);
-    //   console.log(child.getKey().toString('hex'));
-    // }
   });
 
   fileReadStream.pipe(occurrenceCountStream);
